@@ -37,10 +37,20 @@ public class GestDrivers {
 
     @GetMapping("/search")
     public String searchDrivers(@RequestParam String lastName, Model model) {
-    List<Driver> drivers = driverRepository.findByLastName(lastName);
+    List<Driver> drivers = driverRepository.findByLastNameContainingIgnoreCase(lastName);
     model.addAttribute("searchResults", drivers);
     model.addAttribute("searchTerm", lastName);
     return "searchResults";
-}
+    }
+
+    @GetMapping("/search-nationality")
+    public String searchDriversByNationality(@RequestParam String birthCountry, Model model) {
+        List<Driver> drivers = driverRepository.findByBirthCountryContainingIgnoreCase(birthCountry);
+        model.addAttribute("searchResults", drivers);
+        model.addAttribute("searchTerm", birthCountry);
+        model.addAttribute("searchType", "nationality");
+
+        return "searchResults";
+    }
     
 }

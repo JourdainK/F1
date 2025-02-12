@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import groovyjarjarantlr4.v4.runtime.misc.Nullable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +23,17 @@ public class Driver {
     private String lastName;
     private String fullName;
     private String abbreviation;
+
+    @Column(name = "country_of_birth_country_id")
+    private String birthCountry;
+
+    @Nullable
     private Integer permanentNumber;
     private Integer totalRaceWins;
+
+    @Column(name = "total_podiums")
+    private Integer totalPodiums;
+
+    @Column(name = "total_championship_wins")
+    private Integer totalChampionshipWins;
 }

@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface DriverRepository extends JpaRepository<Driver, String> {
-    List<Driver> findByLastName(String lastName);
+    List<Driver> findByLastNameContainingIgnoreCase(String lastName);
+    List<Driver> findByBirthCountryContainingIgnoreCase(String birthCountry);
 }
