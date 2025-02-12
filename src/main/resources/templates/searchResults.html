@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragments/layout/base_layout}">
+<head>
+    <title>Search Results - F1</title>
+</head>
+<body>
+    <section layout:fragment="content">
+        <h2 class="mb-4">Search Results for: <span th:text="${searchTerm}" class="text-primary"></span></h2>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" th:each="driver : ${searchResults}">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0" th:text="${driver.fullName}"></h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Number:</strong> 
+                                <span th:text="${driver.permanentNumber}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Abbreviation:</strong> 
+                                <span th:text="${driver.abbreviation}"></span>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Race Wins:</strong> 
+                                <span th:text="${driver.totalRaceWins}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(searchResults)}" class="alert alert-info mt-4">
+            No drivers found with last name: <span th:text="${searchTerm}"></span>
+        </div>
+
+        <div class="mt-4">
+            <a href="/drivers/all" class="btn btn-primary">Back to All Drivers</a>
+        </div>
+    </section>
+</body>
+</html>
