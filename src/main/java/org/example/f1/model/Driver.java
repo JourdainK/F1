@@ -7,8 +7,6 @@ import org.hibernate.annotations.GenericGenerator;
 import groovyjarjarantlr4.v4.runtime.misc.Nullable;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @ToString
 @Table(name = "driver", schema = "public")
