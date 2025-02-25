@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.List;
 
 public interface ConstructorRepository extends JpaRepository<Constructor, String> {
-    List<Constructor> getConstructorsByCountry(Country country);
+    List<Constructor> findByCountry_NameContainingIgnoreCase(String countryName);
     List<Constructor> findByNameContainingIgnoreCase(String name);
 
 }

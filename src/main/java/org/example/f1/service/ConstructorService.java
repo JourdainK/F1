@@ -17,4 +17,8 @@ public class ConstructorService {
     public List<Constructor> searchByName(String name){
         return constructorRepository.findByNameContainingIgnoreCase(name);
     }
-}
+
+    public List<Constructor> searchByCountryName(String name){
+        return constructorRepository.findByCountry_NameContainingIgnoreCase(name);
+    }
+ }

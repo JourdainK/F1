@@ -34,6 +34,17 @@ public class ConstructorController {
         return "constructorSearchResults";
     }
 
+    @GetMapping("/search-country")
+    public String searchConstructorsByCountry(@RequestParam String countryName, Model model){
+        List<Constructor> results = constructorService.searchByCountryName(countryName);
+        model.addAttribute("searchResults", results);
+        model.addAttribute("searchTerm", countryName);
+        model.addAttribute("searchType","countryName");
+
+        return "constructorSearchResults";
+
+    }
+
     @RequestMapping("/all")
     public String displayAll(Map<String, Object> model) {
         try {
