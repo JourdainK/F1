@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/base_layout}">
+<head>
+    <title>Search Results - F1</title>
+</head>
+
+<body>
+<section layout:fragment="content">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 d-flex justify-content-center">
+        <div class="col" th:each="constructor : ${searchResults}">
+            <div class="card h-100 position-relative">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="card-title mb-0" th:text="${constructor.name}"></h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Full Name:</strong>
+                            <span th:text="${constructor.fullName}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Country:</strong>
+                            <span th:text="${constructor.country.name}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Championship Wins:</strong>
+                            <span th:text="${constructor.totalChampionshipWins}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Race Wins:</strong>
+                            <span th:text="${constructor.totalRaceWins}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Best Position:</strong>
+                            <span th:text="${constructor.bestChampionshipPosition}"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Fastest Laps:</strong>
+                            <span th:text="${constructor.totalFastestLaps}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(searchResults)}" class="alert alert-info mt-4">
+        No constructors found with name: <span th:text="${searchTerm}"></span>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center p-4">
+        <a href="/constructors/all" class="btn btn-primary">Back to All Constructors</a>
+    </div>
+</section>
+</body>
