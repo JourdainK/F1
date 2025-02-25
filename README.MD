@@ -29,6 +29,7 @@ You can run this application with either PostgreSQL or H2 database:
 - Thymeleaf
 - Maven
 - PostgreSQL/H2 Database
+- Bootstrap 5.3.3
 
 ## Getting Started
 1. Clone this repository

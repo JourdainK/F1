@@ -39,4 +39,5 @@ public class Constructor {
 
     @Column(name = "total_fastest_laps")
     private Integer totalFastestLaps;
+
 }
