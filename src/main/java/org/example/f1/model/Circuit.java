@@ -36,6 +36,6 @@ public class Circuit {
     @Column(name = "total_races_held")
     private Integer totalRacesHeld;
 
-    @Column(name = "image_url")
-    private String imageUrl;  // New field for image URL
+    //@Column(name = "image_url")
+    //private String imageUrl;  // New field for image URL
 }

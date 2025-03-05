@@ -17,10 +17,11 @@ You can run this application with either PostgreSQL or H2 database:
 4. Run the application
 
 ### Option 2: H2 Database (In-Memory)
-1. Copy `application.properties.example.h2` to `application.properties`
-2. Unzip the schema and data files into the `src/main/resources` folder
-3. Run the application
-4. Access the H2 console at `http://localhost:5000/h2-console`
+1. Unzip data.zip into the folder (src/main/resources).
+2. Copy `application.properties.example.h2` to `application.properties`
+3. Unzip the schema and data files into the `src/main/resources` folder 
+4. Run the application 
+5. Access the H2 console at `http://localhost:5000/h2-console`
 
 ## Technical Stack
 - Java 17
