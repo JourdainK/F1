@@ -1,5 +1,10 @@
 <a th:fragment="paging(pageNum, label, tooltip)" class="page-link"
-   th:href="@{'/drivers/allDrivers?' + ${keyword!=null && keyword!=''? 'keyword=' + keyword + '&' : ''} + 'page=' + ${pageNum} + '&size=' + ${pageSize}}"
+   th:href="@{'/drivers/allDrivers?'
+   + ${keyword!=null && keyword!=''? 'keyword=' + keyword + '&' : ''}
+   + 'page=' + ${pageNum}
+   + '&size=' + ${pageSize}
+   + '&sortedField=' + ${sortedField}
+   + '&sortDirection=' + ${sortDirection}}"
    th:title="${tooltip}" rel="tooltip">
     [[${label}]]
 </a>

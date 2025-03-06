@@ -27,6 +27,8 @@ public class Driver {
 
     @Nullable
     private Integer permanentNumber;
+
+    @Column(name="total_race_wins")
     private Integer totalRaceWins;
 
     @Column(name = "total_podiums")

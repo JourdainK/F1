@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,36 +43,38 @@ public class DriverController {
     }
 
     @GetMapping("/allDrivers")
-        public String displayAllDrivers(Model model, @RequestParam(required = false) String keyword,
-        @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size) {
-            try{
-                List<Driver> allDrivers= new ArrayList<>();
-                Pageable paging =  PageRequest.of(page - 1, size);
+    public String displayAllDrivers(Model model,
+                                    @RequestParam(required = false) String keyword,
+                                    @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "10") int size,
+                                    @RequestParam(defaultValue = "id") String sortField,
+                                    @RequestParam(defaultValue = "asc") String sortDir) {
 
-                Page<Driver> pageDriver = null;
-                if(keyword == null || keyword.isEmpty()){
-                    pageDriver = driverService.findAll(paging);
-                }else if(keyword.equals("lastName")){
-                    //TODO filters
-                    //pageDriver = driverService.findByLastNameContainingIgnoreCase(keyword,paging);
-                }else if(keyword.equals("birthCountry")){
-                    //pageDriver = driverService.findByBirthCountry(keyword, paging);
-                }
-                if(pageDriver != null){
-                    allDrivers = pageDriver.getContent();
-                    model.addAttribute("allDrivers", allDrivers);
-                    model.addAttribute("currentPage", pageDriver.getNumber() + 1);
-                    model.addAttribute("totalItems");
-                    model.addAttribute("totalPages", pageDriver.getTotalPages());
-                    model.addAttribute("pageSize", size);
-                }
+        try {
+            List<Driver> allDrivers = new ArrayList<>();
+            Sort sort = Sort.by(Sort.Direction.fromString(sortDir), sortField);
+            Pageable paging = PageRequest.of(page - 1, size, sort);
 
-            }catch (Exception e){
-                model.addAttribute("error" , e.getMessage());
-                return "error";
+            Page<Driver> pageDriver = driverService.findAll(paging);
+
+            if (pageDriver != null) {
+                allDrivers = pageDriver.getContent();
+                model.addAttribute("allDrivers", allDrivers);
+                model.addAttribute("currentPage", pageDriver.getNumber() + 1);
+                model.addAttribute("totalItems", pageDriver.getTotalElements());
+                model.addAttribute("totalPages", pageDriver.getTotalPages());
+                model.addAttribute("pageSize", size);
+                model.addAttribute("sortField", sortField);
+                model.addAttribute("sortDir", sortDir);
+                model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
             }
 
-            return "Drivers/allDrivers";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+
+        return "Drivers/allDrivers";
     }
 
     @GetMapping("/search")

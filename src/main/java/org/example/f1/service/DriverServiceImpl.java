@@ -53,13 +53,14 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public Page<Driver> findByLastNameContainingIgnoreCase(String lastName, Pageable pageable) {
-        return null;
+        return driverRepository.findByLastNameContainingIgnoreCase(lastName, pageable);
     }
 
     @Override
     public Page<Driver> findByBirthCountry(String country, Pageable pageable) {
-        return null;
+        return driverRepository.findByBirthCountryContainingIgnoreCase(country, pageable);
     }
+
 
 
 }
