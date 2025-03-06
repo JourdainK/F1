@@ -99,6 +99,8 @@
         <div class="col-6 col-md-4">
           <form id="pageSizeForm" th:action="@{/drivers/allDrivers}" method="get">
             <input type="hidden" name="keyword" th:value="${keyword}" />
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
             <div class="form-group pb-2">
               <label for="pageSize">Table Size:</label>
               <select id="pageSize" name="size" class="form-control" onchange="this.form.submit()">
