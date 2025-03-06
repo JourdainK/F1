@@ -31,7 +31,7 @@ public class ConstructorController {
         List<Constructor> results = constructorService.searchByName(name);
         model.addAttribute("searchTerm", name);
         model.addAttribute("searchResults", results);
-        return "constructorSearchResults";
+        return "Constructor/constructorSearchResults";
     }
 
     @GetMapping("/search-country")
@@ -41,7 +41,7 @@ public class ConstructorController {
         model.addAttribute("searchTerm", countryName);
         model.addAttribute("searchType","countryName");
 
-        return "constructorSearchResults";
+        return "Constructor/constructorSearchResults";
 
     }
 
@@ -55,7 +55,7 @@ public class ConstructorController {
             model.put("error", e.getMessage());
             return "error";
         }
-        return "allConstructors";
+        return "Constructor/allConstructors";
     }
 
 

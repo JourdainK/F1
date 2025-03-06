@@ -34,7 +34,7 @@ public class CircuitController {
             model.put("error", e.getMessage());
             return "error";
         }
-        return "allCircuits";
+        return "Circuits/allCircuits";
     }
 
 }

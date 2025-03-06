@@ -1,10 +1,10 @@
-<a th:fragment="paging(pageNum, label, tooltip)" class="page-link"
-   th:href="@{'/drivers/allDrivers'(
+<a th:fragment="paging(pageNum, label, tooltip, baseUrl)" class="page-link"
+   th:href="@{${baseUrl}(
         page=${pageNum},
         size=${pageSize},
         sortField=${sortField},
-        sortDir=${sortDir},
-        keyword=${keyword})}"
+        sortDir=${sortDir}
+        )}"
    th:title="${tooltip}"
    rel="tooltip">
     [[${label}]]

@@ -29,19 +29,6 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-    @RequestMapping("/all")
-    public String displayAll(Map<String, Object> model) {
-        try {
-            List<Driver> allDrivers = (List<Driver>) driverService.listAllDrivers();
-            model.put("allDrivers", allDrivers);
-        } catch (Exception e) {
-            System.out.println("Error while searching the drivers " + e.getMessage());
-            model.put("error", e.getMessage());
-            return "error";
-        }
-        return "Drivers/allDrivers";
-    }
-
     @GetMapping("/allDrivers")
     public String displayAllDrivers(Model model,
                                     @RequestParam(required = false) String keyword,

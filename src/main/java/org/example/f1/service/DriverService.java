@@ -10,8 +10,6 @@ public interface DriverService {
     Iterable<Driver> listAllDrivers();
     List<Driver> findByLastNameContainingIgnoreCase(String lastName);
     List<Driver> findByBirthCountry(String country);
-    Page<Driver> findByLastNameContainingIgnoreCase(String lastName, Pageable pageable);
-    Page<Driver> findByBirthCountry(String country, Pageable pageable);
     Driver getDriverById(String id);
     Page<Driver> findAll(Pageable pageable);
     List<Driver> findTop10ByTotalRaceWins();
